@@ -1,0 +1,27 @@
+site_name: Learn RL
+site_url: https://learnrl.ir
+theme:
+  language: fa
+  logo: assets/logo.png
+  favicon: assets/favicon.ico
+  name: material
+  font:
+    text: Vazirmatn
+  palette:
+    # Dark Mode
+    - scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Dark mode
+      primary: black
+    # Light Mode
+    - scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Light mode
+      primary: black
+markdown_extensions:
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
