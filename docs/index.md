@@ -2,7 +2,7 @@
 
 سلام خوب هستی چه خبر این یه پروژه تسته پس نخور غصه
 یاه یاه
-
+تست
 ## Commands
 
 * `mkdocs new [dir-name]` - Create a new project.
