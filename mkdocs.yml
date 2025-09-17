@@ -5,8 +5,15 @@ theme:
   logo: assets/logo.png
   favicon: assets/favicon.ico
   name: material
+  # extra:
+  #   social:
+  #     - icon: simple/youtube
+  #       link: https://youtube.com/@james-willett
+  #     - icon: simple/linkedin
+  #       link: https://linkedin.com/in/willettjames
   features:
     - content.code.copy
+    - navigation.footer
   font:
     text: Vazirmatn
   palette:
@@ -34,3 +41,11 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
+  - admonition
+  - pymdownx.details
+extra:
+  social:
+    - icon: simple/telegram 
+      link: https://t.me/TheSoroushR
+    - icon: simple/github
+      link: https://github.com/SoroushRamezani/mathematics-for-machine-Learning-FA-persian
