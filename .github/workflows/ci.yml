@@ -1,28 +1,29 @@
-name: ci
+name: Deploy MkDocs Site
+
+# این اکشن زمانی اجرا می‌شود که کدی به شاخه main پوش شود
 on:
   push:
     branches:
       - main
-permissions:
-  contents: write
+      - master
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      # 1. کد ریپازیتوری را دریافت می‌کند
       - uses: actions/checkout@v4
-      - name: Configure Git Credentials
-        run: |
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-      - uses: actions/setup-python@v5
+
+      # 2. پایتون را برای اجرای MkDocs نصب می‌کند
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
           python-version: 3.x
-      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
-      - uses: actions/cache@v4
-        with:
-          key: mkdocs-material-${{ env.cache_id }}
-          path: .cache
-          restore-keys: |
-            mkdocs-material-
-      - run: pip install mkdocs-material
-      - run: mkdocs gh-deploy --force
+
+      # 3. نیازمندی‌های پروژه را از روی فایل requirements.txt نصب می‌کند
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # 4. سایت را با دستور gh-deploy مخصوص گیت‌هاب پیجز منتشر می‌کند
+      - name: Deploy site
+        run: mkdocs gh-deploy --force
