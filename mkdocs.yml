@@ -12,17 +12,17 @@ theme:
   font:
     text: Vazirmatn
   palette:
-    # Dark Mode
-    - scheme: slate
-      toggle:
-        icon: material/weather-sunny
-        name: Dark mode
-      primary: black
     # Light Mode
     - scheme: default
       toggle:
         icon: material/weather-night
         name: Light mode
+      primary: black
+    # Dark Mode
+    - scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Dark mode
       primary: black
 nav:
   - خانه: index.md
