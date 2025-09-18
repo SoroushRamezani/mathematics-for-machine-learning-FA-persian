@@ -1,5 +1,7 @@
 site_name: Learn RL
 site_url: https://learnrl.ir
+repo_url: https://github.com/SoroushRamezani/mathematics-for-machine-learning-FA-persian
+repo_name: mathematics-for-machine-learning-FA-persian
 theme:
   language: fa
   logo: assets/logo.png
@@ -13,7 +15,6 @@ theme:
   #       link: https://linkedin.com/in/willettjames
   features:
     - content.code.copy
-    - navigation.footer
   font:
     text: Vazirmatn
   palette:
@@ -48,4 +49,4 @@ extra:
     - icon: simple/telegram 
       link: https://t.me/TheSoroushR
     - icon: simple/github
-      link: https://github.com/SoroushRamezani/mathematics-for-machine-Learning-FA-persian
+      link: https://github.com/SoroushRamezani
