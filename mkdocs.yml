@@ -7,12 +7,6 @@ theme:
   logo: assets/logo.png
   favicon: assets/favicon.ico
   name: material
-  # extra:
-  #   social:
-  #     - icon: simple/youtube
-  #       link: https://youtube.com/@james-willett
-  #     - icon: simple/linkedin
-  #       link: https://linkedin.com/in/willettjames
   features:
     - content.code.copy
   font:
@@ -30,6 +24,16 @@ theme:
         icon: material/weather-night
         name: Light mode
       primary: black
+nav:
+  - خانه: index.md
+  - مثال کد: code-examples.md
+  - مثال تب: content-tabs.md
+  - ریاضیات برای یادگیری ماشین:
+      - 01. مقدمه و انگیزه: introduction-and-motivation.md
+plugins:
+  - search:
+      lang: ar
+      separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
 markdown_extensions:
   - attr_list
   - pymdownx.emoji:
