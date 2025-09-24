@@ -29,8 +29,11 @@ nav:
   - مثال کد: code-examples.md
   - مثال تب: content-tabs.md
   - ریاضیات برای یادگیری ماشین:
-      - 01. مقدمه و انگیزه: 1-introduction-and-motivation.md
-      - 02. جبر خطی: 2-linear-algebra.md
+    - 01. مقدمه و انگیزه: mml/1-introduction-and-motivation.md
+    - 02. جبر خطی: mml/2-linear-algebra.md
+  - شیرجه در یادگیری عمیق:
+    - تست: d2dl/text.md
+
 plugins:
   - search:
       lang: ar
@@ -60,9 +63,7 @@ extra:
     - icon: simple/github
       link: https://github.com/SoroushRamezani
 extra_javascript:
-  - javascripts/katex.js
-  - https://unpkg.com/katex@0/dist/katex.min.js
-  - https://unpkg.com/katex@0/dist/contrib/auto-render.min.js
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
 extra_css:
-  - https://unpkg.com/katex@0/dist/katex.min.css
   - stylesheets/extra.css
