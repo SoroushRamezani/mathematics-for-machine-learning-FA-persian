@@ -1,0 +1,574 @@
+
+<!doctype html>
+<html lang="fa" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://learnrl.ir/mml/2-linear-algebra/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.21">
+    
+    
+      
+        <title>02. جبر خطی - Learn RL</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2a3383ac.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Vazirmatn:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Vazirmatn";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="rtl" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#02" class="md-skip">
+          پرش به محتویات
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="سرتیتر">
+    <a href="../.." title="Learn RL" class="md-header__button md-logo" aria-label="Learn RL" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Learn RL
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              02. جبر خطی
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="جستجو" placeholder="جستجو" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="جستجو">
+        
+        <button type="reset" class="md-search__icon md-icon" title="بازنشانی" aria-label="بازنشانی" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            راه‌اندازی جستجو
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SoroushRamezani/mathematics-for-machine-learning-FA-persian" title="رفتن به مخزن" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mathematics-for-machine-learning-FA-persian
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="هدایت" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Learn RL" class="md-nav__button md-logo" aria-label="Learn RL" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Learn RL
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SoroushRamezani/mathematics-for-machine-learning-FA-persian" title="رفتن به مخزن" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mathematics-for-machine-learning-FA-persian
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    خانه
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    پایتون برای تحلیل داده
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            پایتون برای تحلیل داده
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pda/0-preface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    پیش گفتار
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="فهرست موضوعات">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      فهرست موضوعات
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      دستگاه معادلات خطی
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="02">02. جبر خطی</h1>
+<p>این فصل به یکی از مهم‌ترین ستون‌های ریاضیات برای یادگیری ماشین، یعنی <strong>جبر خطی</strong>، می‌پردازد.</p>
+<p><strong>جبر چیست و جبر خطی درباره چیست؟</strong></p>
+<p>قبل از هر چیز، بیایید ببینیم منظور از "جبر" (algebra) چیست. جبر به طور کلی یعنی مجموعه‌ای از اشیاء (مثل اعداد یا نمادها) و قوانینی برای کار با آن اشیاء.</p>
+<p><strong>جبر خطی</strong>، به طور خاص، مطالعه‌ی <strong>بردارها (vectors)</strong> و قوانینی برای دستکاری و ترکیب آن‌هاست. احتمالاً شما با "بردارهای هندسی" که در دبیرستان و فیزیک با یک فلش کوچک بالایشان نمایش داده می‌شدند (مثلاً <span class="arithmatex">\(\vec{x}\)</span>)، آشنا هستید. در این کتاب، ما مفهوم کلی‌تری از بردارها را بررسی می‌کنیم و آن‌ها را با حروف ضخیم (bold) نمایش می‌دهیم (مثلاً <strong>x</strong> و <strong>y</strong>).</p>
+<p><strong>بردار واقعاً چیست؟ (فراتر از یک فلش)</strong></p>
+<p>مفهوم کلیدی این است: بردارها اشیائی هستند که می‌توان آن‌ها را با هم <strong>جمع</strong> کرد و در یک عدد (که به آن <strong>اسکالر</strong> یا <strong>scalar</strong> می‌گوییم) <strong>ضرب</strong> کرد، و نتیجه‌ی این عملیات‌ها دوباره یک بردار از همان نوع خواهد بود.</p>
+<p>این تعریف بسیار کلی و قدرتمند است و به ما اجازه می‌دهد تا اشیاء بسیار متفاوتی را "بردار" بنامیم. کتاب به چهار مثال مهم اشاره می‌کند تا این دیدگاه را باز کند:</p>
+<ol>
+<li>
+<p><strong>بردارهای هندسی (Geometric Vectors):</strong> این همان برداری است که از فیزیک و دبیرستان می‌شناسیم: یک پاره‌خط جهت‌دار که طول و جهت مشخصی دارد.</p>
+<ul>
+<li><strong>جمع:</strong> جمع دو بردار هندسی، بردار جدیدی ایجاد می‌کند (قانون متوازی‌الاضلاع).</li>
+<li><strong>ضرب اسکالر:</strong> ضرب یک بردار در یک عدد، طول آن را تغییر می‌دهد (و اگر عدد منفی باشد، جهت را برعکس می‌کند)، اما نتیجه همچنان یک بردار هندسی است.
+این بردارهای قابل‌تجسم به ما کمک می‌کنند تا عملیات ریاضی را به صورت شهودی درک کنیم.</li>
+</ul>
+</li>
+<li>
+<p><strong>چندجمله‌ای‌ها (Polynomials):</strong> این یک مثال شگفت‌انگیز و غیرمنتظره است! چندجمله‌ای‌ها هم بردار هستند، چون از قوانین اصلی پیروی می‌کنند:</p>
+<ul>
+<li><strong>جمع:</strong> اگر دو چندجمله‌ای را با هم جمع کنید، حاصل یک چندجمله‌ای جدید است.</li>
+<li><strong>ضرب اسکالر:</strong> اگر یک چندجمله‌ای را در یک عدد ضرب کنید، حاصل همچنان یک چندجمله‌ای است.
+بنابراین، با اینکه چندجمله‌ای‌ها مثل بردارهای هندسی "قابل رسم" نیستند، اما از نظر ریاضیاتی، آن‌ها هم بردار محسوب می‌شوند.</li>
+</ul>
+</li>
+<li>
+<p><strong>سیگنال‌های صوتی (Audio Signals):</strong> یک سیگنال صوتی به صورت مجموعه‌ای از اعداد نمایش داده می‌شود. سیگنال‌های صوتی هم بردار هستند:</p>
+<ul>
+<li><strong>جمع:</strong> می‌توانید دو سیگنال صوتی را با هم جمع کنید (مثل میکس کردن دو آهنگ) و یک سیگنال صوتی جدید بسازید.</li>
+<li><strong>ضرب اسکالر:</strong> می‌توانید یک سیگنال صوتی را در یک عدد ضرب کنید (مثلاً برای کم و زیاد کردن ولوم) و نتیجه همچنان یک سیگنال صوتی خواهد بود.</li>
+</ul>
+</li>
+<li>
+<p><strong>عناصر فضای ℝⁿ یا (Elements of ℝⁿ):</strong> این همان مفهومی است که در این کتاب و در یادگیری ماشین بیشترین کاربرد را دارد. یک عنصر در فضای ℝⁿ، یک <strong>تاپل (tuple)</strong> یا لیستی مرتب از <em>n</em> عدد حقیقی است. برای مثال:
+    <span class="arithmatex">\(\mathbf{a} = \begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix} \in \mathbb{R}^3\)</span>
+    این عناصر هم بردار هستند:</p>
+<ul>
+<li><strong>جمع:</strong> جمع دو بردار در ℝⁿ به صورت مؤلفه‌به‌مؤلفه انجام می‌شود و حاصل، برداری دیگر در همان فضاست.</li>
+<li><strong>ضرب اسکالر:</strong> ضرب یک بردار در ℝⁿ در یک عدد اسکالر، تک‌تک مؤلفه‌های آن را در آن عدد ضرب می‌کند و نتیجه باز هم یک بردار در همان فضاست.
+یک مزیت بزرگ این نوع بردارها این است که به راحتی با <strong>آرایه‌ها (arrays)</strong> در زبان‌های برنامه‌نویسی مطابقت دارند و پیاده‌سازی الگوریتم‌ها را ساده می‌کنند.</li>
+</ul>
+</li>
+</ol>
+<figure>
+<p><img alt="Image title" loading="lazy" src="../../assets/mml-images/2-1.png" /></p>
+<figcaption></figcaption>
+</figure>
+<p><strong>هدف این فصل چیست؟</strong></p>
+<p>جبر خطی بر شباهت‌های بین این مفاهیمِ برداری تمرکز دارد. همه‌ی آن‌ها را می‌توان جمع کرد و در اسکالر ضرب کرد.</p>
+<p>یکی از ایده‌های اصلی در ریاضیات، مفهوم <strong>"بسته بودن" (closure)</strong> است. سؤال این است: "مجموعه‌ی تمام چیزهایی که می‌توانند از عملیات پیشنهادی من حاصل شوند، چیست؟"</p>
+<p>در مورد بردارها، سؤال این است: اگر با مجموعه‌ی کوچکی از بردارها شروع کنیم و آن‌ها را با هم جمع و در اعداد اسکالر ضرب کنیم، به چه مجموعه‌ای از بردارها می‌رسیم؟ این مفهوم به <strong>"فضای برداری" (vector space)</strong> منجر می‌شود که در بخش‌های بعدی به تفصیل بررسی خواهد شد و اساس بسیاری از مفاهیم یادگیری ماشین است.</p>
+<h2 id="_1">دستگاه معادلات خطی</h2>
+<p>دستگاه معادلات خطی بخش اصلی و مرکزی جبر خطی را تشکیل می‌دهند. بسیاری از مسائل را می‌توان به صورت یک دستگاه معادلات خطی فرمول‌بندی کرد و جبر خطی ابزارهای لازم برای حل آن‌ها را در اختیار ما قرار می‌دهد.</p>
+<hr />
+<p><strong>مثال کاربردی: برنامه‌ریزی تولید یک شرکت</strong> 🏭</p>
+<p>برای درک بهتر موضوع، کتاب با یک مثال شروع می‌کند. فرض کنید شرکتی <em>n</em> نوع محصول مختلف (<span class="arithmatex">\(N_1, ..., N_n\)</span>) تولید می‌کند که برای ساخت آن‌ها به <em>m</em> نوع منبع اولیه (<span class="arithmatex">\(R_1, ..., R_m\)</span>) نیاز دارد.</p>
+<ul>
+<li>برای تولید <strong>یک واحد</strong> از محصول <span class="arithmatex">\(N_j\)</span>، مقدار <span class="arithmatex">\(a_{ij}\)</span> از منبع <span class="arithmatex">\(R_i\)</span> مورد نیاز است.</li>
+<li>هدف ما پیدا کردن یک برنامه تولید بهینه است؛ یعنی می‌خواهیم بدانیم از هر محصول <span class="arithmatex">\(N_j\)</span> چه تعداد (که آن را با متغیر <span class="arithmatex">\(x_j\)</span> نشان می‌دهیم) باید تولید کنیم.</li>
+<li>این برنامه تولید باید به گونه‌ای باشد که اگر در مجموع <span class="arithmatex">\(b_i\)</span> واحد از منبع <span class="arithmatex">\(R_i\)</span> در دسترس داریم، در حالت ایده‌آل هیچ منبعی باقی نماند.</li>
+</ul>
+<p>اگر از محصولات مختلف به تعداد <span class="arithmatex">\(x_1, ..., x_n\)</span> تولید کنیم، کل منبع <span class="arithmatex">\(R_i\)</span> که مصرف می‌شود برابر است با:
+<span class="arithmatex">\(a_{i1}x_1 + \dots + a_{in}x_n\)</span> بنابراین، برای یک برنامه تولید بهینه، باید دستگاهی از معادلات زیر برقرار باشد:<span class="arithmatex">\(\begin{align*} a_{11}x_1 + \dots + a_{1n}x_n &amp;= b_1 \\ \vdots \qquad &amp; \qquad \vdots \\ a_{m1}x_1 + \dots + a_{mn}x_n &amp;= b_m \end{align*}\)</span>
+این فرم کلی یک <strong>دستگاه معادلات خطی</strong> (system of linear equations) است.</p>
+<hr />
+<p><strong>تعریف راه حل (Solution)</strong></p>
+<p>در دستگاه بالا، <span class="arithmatex">\(x_1, ..., x_n\)</span> مجهولات دستگاه هستند. هر مجموعه‌ای از اعداد (n-تایی) مثل <span class="arithmatex">\((x_1, ..., x_n)\)</span> که تمام معادلات دستگاه را به طور همزمان برآورده کند، یک <strong>جواب</strong> (solution) برای آن دستگاه محسوب می‌شود.</p>
+<hr />
+<p><strong>یک دستگاه چند جواب می‌تواند داشته باشد؟</strong></p>
+<p>برای یک دستگاه معادلات خطی با مقادیر حقیقی، به طور کلی سه حالت ممکن است رخ دهد: هیچ جوابی وجود نداشته باشد، دقیقاً یک جواب یکتا وجود داشته باشد، یا بی‌نهایت جواب وجود داشته باشد.</p>
+<ol>
+<li><strong>هیچ جوابی (No solution):</strong> 🤷‍♂️ گاهی معادلات با یکدیگر در تناقض هستند. برای مثال، اگر از جمع دو معادله به نتیجه‌ی <span class="arithmatex">\(2x_1 + 3x_3 = 5\)</span> برسیم، اما معادله‌ی دیگری در دستگاه <span class="arithmatex">\(2x_1 + 3x_3 = 1\)</span> باشد، این تناقض نشان می‌دهد که هیچ جوابی وجود ندارد.</li>
+<li><strong>دقیقاً یک جواب (Unique solution):</strong> ✅ در این حالت، تنها یک مجموعه از مقادیر برای مجهولات وجود دارد که تمام معادلات را ارضا می‌کند.</li>
+<li><strong>بی‌نهایت جواب (Infinitely many solutions):</strong> ♾️ این حالت زمانی رخ می‌دهد که حداقل یکی از معادلات، ترکیبی خطی از معادلات دیگر باشد (یعنی اطلاعات جدیدی به دستگاه اضافه نکند و اضافی باشد). در این وضعیت، ما با <strong>متغیرهای آزاد</strong> (free variable) روبرو می‌شویم که می‌توانند هر مقداری اختیار کنند و به ازای هر مقدار، یک جواب برای دستگاه به دست می‌آید.</li>
+</ol>
+<hr />
+<p><strong>تعبیر هندسی دستگاه معادلات خطی</strong></p>
+<p>یک راه بسیار خوب برای درک شهودی این سه حالت، نگاه کردن به تعبیر هندسی آنهاست:</p>
+<ul>
+<li>
+<p><strong>در فضای دو بعدی (2D):</strong> هر معادله‌ی خطی با دو متغیر (مثلاً <span class="arithmatex">\(x_1, x_2\)</span>) یک <strong>خط</strong> را در صفحه تعریف می‌کند. مجموعه جواب‌های دستگاه، همان محل برخورد یا فصل مشترک این خطوط است.</p>
+<ul>
+<li><strong>یک جواب:</strong> خطوط در یک نقطه متقاطع هستند.</li>
+<li><strong>بی‌نهایت جواب:</strong> خطوط بر هم منطبق هستند.</li>
+<li><strong>هیچ جواب:</strong> خطوط موازی هستند و هیچ برخوردی ندارند.</li>
+</ul>
+</li>
+<li>
+<p><strong>در فضای سه بعدی (3D):</strong> هر معادله‌ی خطی با سه متغیر یک <strong>صفحه</strong> (plane) را در فضا مشخص می‌کند. مجموعه جواب‌ها، فصل مشترک این صفحات است که می‌تواند یک صفحه، یک خط، یک نقطه یا تهی (هیچ اشتراکی) باشد.</p>
+</li>
+</ul>
+<hr />
+<p><strong>نمایش فشرده: مقدمه‌ای بر ماتریس‌ها</strong></p>
+<p>برای اینکه بتوانیم به طور سیستماتیک با این دستگاه‌ها کار کنیم، از یک نمایش فشرده‌تر استفاده می‌کنیم. دستگاه معادلات را می‌توان به صورت جمع ستون‌های ضرایب که در متغیرها ضرب شده‌اند، نوشت:
+<span class="arithmatex">\(\begin{bmatrix} a_{11} \\ \vdots \\ a_{m1} \end{bmatrix} x_1 + \begin{bmatrix} a_{12} \\ \vdots \\ a_{m2} \end{bmatrix} x_2 + \dots + \begin{bmatrix} a_{1n} \\ \vdots \\ a_{mn} \end{bmatrix} x_n = \begin{bmatrix} b_1 \\ \vdots \\ b_m \end{bmatrix}\)</span>و این عبارت را می‌توان به شکل فشرده‌ی ضرب ماتریس در بردار نمایش داد:<span class="arithmatex">\(\begin{bmatrix} a_{11} &amp; \dots &amp; a_{1n} \\ \vdots &amp; &amp; \vdots \\ a_{m1} &amp; \dots &amp; a_{mn} \end{bmatrix} \begin{bmatrix} x_1 \\ \vdots \\ x_n \end{bmatrix} = \begin{bmatrix} b_1 \\ \vdots \\ b_m \end{bmatrix}\)</span>
+که همان فرم معروف <span class="arithmatex">\(Ax=b\)</span> است. در بخش‌های بعدی، با ماتریس‌ها و قوانین حاکم بر آن‌ها بیشتر آشنا خواهیم شد.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://t.me/TheSoroushR" target="_blank" rel="noopener" title="t.me" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm4.962 7.224c.1-.002.321.023.465.14a.5.5 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024q-.159.037-5.061 3.345-.72.495-1.302.48c-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789q.04-.324.893-.663 5.247-2.286 6.998-3.014c3.332-1.386 4.025-1.627 4.476-1.635"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/SoroushRamezani" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\u06a9\u067e\u06cc \u0634\u062f", "clipboard.copy": "\u06a9\u067e\u06cc \u06a9\u0631\u062f\u0646", "search.result.more.one": "1 \u0645\u0648\u0631\u062f \u062f\u06cc\u06af\u0631 \u062f\u0631 \u0627\u06cc\u0646 \u0635\u0641\u062d\u0647", "search.result.more.other": "# \u0645\u0648\u0631\u062f \u062f\u06cc\u06af\u0631 \u062f\u0631 \u0627\u06cc\u0646 \u0635\u0641\u062d\u0647", "search.result.none": "\u0633\u0646\u062f\u06cc \u06cc\u0627\u0641\u062a \u0646\u0634\u062f", "search.result.one": "1 \u0633\u0646\u062f \u06cc\u0627\u0641\u062a \u0634\u062f", "search.result.other": "# \u0633\u0646\u062f \u06cc\u0627\u0641\u062a \u0634\u062f", "search.result.placeholder": "\u0628\u0631\u0627\u06cc \u0634\u0631\u0648\u0639 \u062c\u0633\u062a\u062c\u0648 \u062a\u0627\u06cc\u067e \u06a9\u0646\u06cc\u062f", "search.result.term.missing": "\u0645\u0648\u062c\u0648\u062f \u0646\u06cc\u0633\u062a", "select.version": "\u0627\u0646\u062a\u062e\u0627\u0628 \u0648\u06cc\u0631\u0627\u06cc\u0634"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
