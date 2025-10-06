@@ -26,13 +26,15 @@ theme:
       primary: black
 nav:
   - خانه: index.md
-  - مثال کد: code-examples.md
-  - مثال تب: content-tabs.md
-  - ریاضیات برای یادگیری ماشین:
-    - 01. مقدمه و انگیزه: mml/1-introduction-and-motivation.md
-    - 02. جبر خطی: mml/2-linear-algebra.md
-  - شیرجه در یادگیری عمیق:
-    - تست: d2dl/text.md
+  # - مثال کد: code-examples.md
+  # - مثال تب: content-tabs.md
+  # - ریاضیات برای یادگیری ماشین:
+  #   - 01. مقدمه و انگیزه: mml/1-introduction-and-motivation.md
+  #   - 02. جبر خطی: mml/2-linear-algebra.md
+  # - شیرجه در یادگیری عمیق:
+  #   - تست: d2dl/text.md
+  - پایتون برای تحلیل داده:
+      - پیش گفتار: pda/0-preface.md
 
 plugins:
   - search:
@@ -58,7 +60,7 @@ markdown_extensions:
   - pymdownx.details
 extra:
   social:
-    - icon: simple/telegram 
+    - icon: simple/telegram
       link: https://t.me/TheSoroushR
     - icon: simple/github
       link: https://github.com/SoroushRamezani
